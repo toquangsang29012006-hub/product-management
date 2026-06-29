@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const database = require("./config/database")
 
-const systemConfig = require("../../config/system");
+const systemConfig = require("./config/system");
 
 
 const route = require("./routes/client/index.route");
