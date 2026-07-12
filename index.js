@@ -1,5 +1,7 @@
 const express = require("express");
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const bodyParser = require('body-parser')
+
 require("dotenv").config();
 
 const database = require("./config/database")
@@ -24,6 +26,8 @@ app.set("view engine", "pug"); // Template engine mà bạn muốn sử dụng.
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
 
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded());
+
 
 
 // Route
