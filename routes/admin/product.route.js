@@ -11,5 +11,8 @@ route.patch("/change-multi", controller.changeMulti)
 
 route.delete("/delete/:id", controller.deleteItem)
 
+route.get("/create", controller.createGet);
+
+route.post("/create", controller.createPost);
 
 module.exports = route;
