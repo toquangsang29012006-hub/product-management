@@ -1,5 +1,5 @@
 const Product = require("../../models/product.model");
-
+const systemConfig = require("../../config/system");
 const filterStatusHelper = require("../../helper/filterStatus");
 const searchHelper = require("../../helper/search");
 const paginationHelper = require("../../helper/pagination");
@@ -121,6 +121,7 @@ module.exports.createGet = (req, res) => {
 
 // [POST] /admin/products/create
 module.exports.createPost = async (req, res) => {
+    console.log(req.file);
     req.body.price = parseInt(req.body.price);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);
@@ -132,8 +133,10 @@ module.exports.createPost = async (req, res) => {
         req.body.position = parseInt(req.body.position);
     }
 
+    req.body.thumbnail = `/uploads/${req.file.filename}`;
+
     const products = new Product(req.body);
 
     await products.save();
-    res.redirect("/admin/products");
+    res.redirect(`${systemConfig.prefixAdmin}/products`);
 }
